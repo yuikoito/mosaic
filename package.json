@@ -1,5 +1,5 @@
 {
-  "name": "komakasugiru-uranai",
+  "name": "NextJS + TypeScript Template",
   "private": true,
   "scripts": {
     "build": "next build",
