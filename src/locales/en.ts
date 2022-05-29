@@ -16,4 +16,7 @@ export const EnTexts = {
     faceList: 'モザイクをかけない顔リスト',
     record: 'これまでの履歴',
   },
+  uploadPicture: 'Upload',
+  selectPhotoFromLibrary: 'Select an picture from the library.',
+  note: 'Please select a photo which has the face.',
 };

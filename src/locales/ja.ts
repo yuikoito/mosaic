@@ -16,4 +16,7 @@ export const JaTexts = {
     faceList: 'モザイクをかけない顔リスト',
     record: 'これまでの履歴',
   },
+  uploadPicture: '画像をアップロード',
+  selectPhotoFromLibrary: 'ライブラリから画像を選択',
+  note: '顔がうつっている画像を選択してください。',
 };
