@@ -16,9 +16,7 @@ const Home: NextPage = () => {
     if (user) router.push(RoutePath.home);
   }, [user]);
   const t = useTranslate();
-  const goToLoginForm = () => {
-    console.log('login');
-  };
+
   return (
     <>
       <Hero />
@@ -30,7 +28,9 @@ const Home: NextPage = () => {
       >
         <Samples />
         <CommonButton
-          onClick={goToLoginForm}
+          onClick={() => {
+            router.push(RoutePath.home);
+          }}
           width={{ base: '100%', lg: '50%' }}
         >
           {t.start}

@@ -1,12 +1,12 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { RoutePath } from '../constants/routePath';
 import useTranslate from '../hooks/useTranslate';
 import CommonButton from './common/Button';
 
 export default function Hero() {
+  const router = useRouter();
   const t = useTranslate();
-  const goToLoginForm = () => {
-    console.log('login');
-  };
 
   return (
     <Stack
@@ -35,7 +35,14 @@ export default function Hero() {
             <br />
             {t.description2}
           </Text>
-          <CommonButton onClick={goToLoginForm}> {t.start}</CommonButton>
+          <CommonButton
+            onClick={() => {
+              router.push(RoutePath.home);
+            }}
+          >
+            {' '}
+            {t.start}
+          </CommonButton>
         </Stack>
       </Flex>
       <Flex flex={1}>
