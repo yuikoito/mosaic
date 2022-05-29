@@ -23,8 +23,8 @@ const CommonButton: React.FC<Props> = ({
       width={full ? 'full' : 'auto'}
       fontWeight={'normal'}
       px={6}
-      colorScheme={'teal.800'}
-      bg={'teal.800'}
+      colorScheme={'cyan.700'}
+      bg={'cyan.700'}
       _hover={{ opacity: 0.8 }}
     >
       {children}

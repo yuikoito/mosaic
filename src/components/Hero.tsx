@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <Stack
       direction={{ base: 'column-reverse', md: 'row' }}
-      bgColor={'pink.900'}
+      bgColor={'red.300'}
     >
       <Flex
         px={{ base: 4, md: 10 }}
