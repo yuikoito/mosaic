@@ -1,7 +1,11 @@
 export const JaTexts = {
   title: 'モザイク',
   subTitle: '人の顔に簡単にモザイクをかけることができます',
-  description: 'もう小さい目に悩まされる人生は終わりだ！',
-  description2: '目が大きい新しい人生を',
+  description: 'SNSに写真を上げるとき他人の顔を隠すの面倒ですよね',
+  description2:
+    'モザイクならボタン一つで自分以外の顔にモザイクをかけることができます',
   start: '早速始める',
+  hash: 'モザイク',
+  sharetitle: '画像をシェア',
+  shareText: 'モザイクを使ってみたよ',
 };
