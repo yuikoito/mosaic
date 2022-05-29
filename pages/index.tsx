@@ -11,9 +11,13 @@ import useTranslate from '../src/hooks/useTranslate';
 
 const Home: NextPage = () => {
   const { user } = useAuthenticator((context) => [context.user]);
+  const abortController = new AbortController();
   const router = useRouter();
   useEffect(() => {
     if (user) router.push(RoutePath.home);
+    return () => {
+      abortController.abort();
+    };
   }, [user]);
   const t = useTranslate();
 
