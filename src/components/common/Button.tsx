@@ -4,14 +4,14 @@ import React from 'react';
 type Props = {
   leftIcon?: React.ReactElement;
   onClick?: () => void;
-  full?: boolean;
+  width?: any;
 };
 
 const CommonButton: React.FC<Props> = ({
   children,
   leftIcon,
   onClick,
-  full,
+  width,
 }) => {
   return (
     <Button
@@ -20,7 +20,7 @@ const CommonButton: React.FC<Props> = ({
       rounded={'full'}
       boxShadow="xl"
       size={'lg'}
-      width={full ? 'full' : 'auto'}
+      width={width ?? 'auto'}
       fontWeight={'normal'}
       px={6}
       colorScheme={'cyan.700'}

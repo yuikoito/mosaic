@@ -1,11 +1,12 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react';
-import useMove from '../hooks/useMove';
 import useTranslate from '../hooks/useTranslate';
 import CommonButton from './common/Button';
 
 export default function Hero() {
   const t = useTranslate();
-  const { move } = useMove('start');
+  const goToLoginForm = () => {
+    console.log('login');
+  };
 
   return (
     <Stack
@@ -22,26 +23,19 @@ export default function Hero() {
       >
         <Stack spacing={6} w={'full'} maxW={'lg'}>
           <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-            <Text as={'span'} color={'white'}>
+            <Text as={'p'} color={'white'}>
               {t.title}
             </Text>
-            <br />
-            <Text
-              color={'white'}
-              as={'span'}
-              fontSize={{ base: 'xl', md: '2xl' }}
-            >
+            <Text color={'white'} as={'p'} fontSize={{ base: 'xl', md: '2xl' }}>
               {t.subTitle}
             </Text>
           </Heading>
-          <Text fontSize={{ base: 'md', lg: 'lg' }} color={'pink.100'}>
+          <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.50'}>
             {t.description}
             <br />
             {t.description2}
           </Text>
-          <Stack direction={{ base: 'column', md: 'row' }}>
-            <CommonButton onClick={move}> {t.start}</CommonButton>
-          </Stack>
+          <CommonButton onClick={goToLoginForm}> {t.start}</CommonButton>
         </Stack>
       </Flex>
       <Flex flex={1}>
