@@ -1,4 +1,6 @@
 export const RoutePath = {
   index: '/',
-  home: '/home',
+  create: '/create',
+  faceList: '/faceList',
+  record: '/record',
 } as const;

@@ -53,7 +53,7 @@ const ShareModal = ({
     <Modal isOpen={isOpenModal} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{t.sharetitle}</ModalHeader>
+        <ModalHeader>{t.shareTitle}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <VStack

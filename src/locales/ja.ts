@@ -6,9 +6,14 @@ export const JaTexts = {
     'モザイクならボタン一つで自分以外の顔にモザイクをかけることができます',
   start: '早速始める',
   hash: 'モザイク',
-  sharetitle: '画像をシェア',
+  shareTitle: '画像をシェア',
   shareText: 'モザイクを使ってみたよ',
   sample: '様々な事例の紹介',
   sampleDesc:
     '以下の画像のように特定の人物以外にモザイクをかけることができます',
+  sideMenu: {
+    create: 'モザイク画像を作る',
+    faceList: 'モザイクをかけない顔リスト',
+    record: 'これまでの履歴',
+  },
 };

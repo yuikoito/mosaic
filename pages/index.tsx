@@ -13,8 +13,8 @@ const Home: NextPage = () => {
   const { user } = useAuthenticator((context) => [context.user]);
   const router = useRouter();
   useEffect(() => {
-    if (user) router.push(RoutePath.home);
-  }, [user]);
+    if (user) router.push(RoutePath.create);
+  }, [user, router]);
   const t = useTranslate();
 
   return (
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         <Samples />
         <CommonButton
           onClick={() => {
-            router.push(RoutePath.home);
+            router.push(RoutePath.create);
           }}
           width={{ base: '100%', lg: '50%' }}
         >

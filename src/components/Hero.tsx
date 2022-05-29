@@ -37,7 +37,7 @@ export default function Hero() {
           </Text>
           <CommonButton
             onClick={() => {
-              router.push(RoutePath.home);
+              router.push(RoutePath.create);
             }}
           >
             {' '}

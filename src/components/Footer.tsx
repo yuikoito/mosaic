@@ -7,9 +7,8 @@ const Footer = () => {
       role="contentinfo"
       mx="auto"
       maxW="7xl"
-      pt="20"
-      pb="12"
-      px={{ base: '4', md: '8' }}
+      height="120px"
+      p={{ base: '4', md: '8' }}
     >
       <Flex
         justifyContent="space-between"
