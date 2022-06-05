@@ -19,6 +19,7 @@ const nextConfig = {
     AWS_COGNITO_REGION: process.env.AWS_COGNITO_REGION,
     AWS_USER_POOLS_ID: process.env.AWS_USER_POOLS_ID,
     AWS_USER_POOLS_CLIENT_ID: process.env.AWS_USER_POOLS_CLIENT_ID,
+    API_ENDPOINT: process.env.API_ENDPOINT,
   },
 };
 

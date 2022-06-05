@@ -19,4 +19,9 @@ export const EnTexts = {
   uploadPicture: 'Upload',
   selectPhotoFromLibrary: 'Select an picture from the library.',
   note: 'Please select a photo which has the face.',
+  selectPhotoFirst: 'Please select an picture first.',
+  selectUnMosaicTargets: 'モザイク対象外の人物を選ぶ',
+  createUnMosaicTargets: 'モザイク対象外の顔を新規登録',
+  makePhotoMosaic: '画像にモザイクをかける',
+  do: 'Do',
 };

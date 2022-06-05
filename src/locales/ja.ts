@@ -19,4 +19,9 @@ export const JaTexts = {
   uploadPicture: '画像をアップロード',
   selectPhotoFromLibrary: 'ライブラリから画像を選択',
   note: '顔がうつっている画像を選択してください。',
+  selectPhotoFirst: 'まずは画像を選択してください。',
+  selectUnMosaicTargets: 'モザイク対象外の人物を選ぶ',
+  createUnMosaicTargets: 'モザイク対象外の顔を新規登録',
+  makePhotoMosaic: '画像にモザイクをかける',
+  do: '実行',
 };
