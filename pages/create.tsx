@@ -7,7 +7,6 @@ import {
   Text,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import type { NextPage } from 'next';
 import nookies from 'nookies';
 import React, { useRef, useState } from 'react';
@@ -16,6 +15,7 @@ import CommonButton from '../src/components/common/Button';
 import useTranslate from '../src/hooks/useTranslate';
 import { useUnMosaicFaces } from '../src/hooks/useUnMosaicFaces';
 import AuthLayout from '../src/layouts/AuthLayout';
+import { addMosaic } from '../src/libs/api/mosaic';
 import resizeImage from '../src/libs/resizeImage';
 
 const CreatePage: NextPage = () => {
@@ -23,7 +23,7 @@ const CreatePage: NextPage = () => {
   const token = cookies.idToken;
   const [image, setImage] = useState<string>();
   const { data: unMosaicFaces } = useUnMosaicFaces();
-  const [base64, setBase64] = useState<string>();
+  const [base64, setBase64] = useState<string>('');
   const [changedImage, setChangedImage] = useState<string | null>(null);
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const inputImageRef = useRef<HTMLInputElement>(null);
@@ -50,21 +50,14 @@ const CreatePage: NextPage = () => {
   // モザイクをかける
   const changeImage = async () => {
     setIsLoad(true);
-    const response = await axios.post(
-      `${process.env.API_ENDPOINT}/mosaic`,
-      JSON.stringify({
-        imgTitle,
-        img: base64,
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    // TODO [] にはモザイクをかけない顔を選択する
+    const response = await addMosaic(imgTitle, base64, []);
+    if (response.isLeft()) {
+      window.alert(response.value);
+      return;
+    }
     setIsLoad(false);
-    setChangedImage(`data:image/png;base64,${response.data.img}`);
+    setChangedImage(`data:image/png;base64,${response.value.img}`);
   };
 
   return (

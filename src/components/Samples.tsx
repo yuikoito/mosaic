@@ -1,9 +1,9 @@
 import { Center, Text } from '@chakra-ui/react';
-import useTranlate from '../hooks/useTranslate';
+import useTranslate from '../hooks/useTranslate';
 import Title from './common/Title';
 
 const Samples = () => {
-  const t = useTranlate();
+  const t = useTranslate();
 
   return (
     <Center px={5} mb={5} flexDirection="column">

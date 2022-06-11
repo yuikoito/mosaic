@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
-import useTranlate from '../../hooks/useTranslate';
+import useTranslate from '../../hooks/useTranslate';
 
 type Props = {
   shareUrl: string;
@@ -33,7 +33,7 @@ const ShareModal = ({
   modalType,
   isLoading,
 }: Props) => {
-  const t = useTranlate();
+  const t = useTranslate();
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
   const snsUrl = () => {
     const hash = `#${t.hash}`;
