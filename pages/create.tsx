@@ -10,10 +10,10 @@ import {
 import axios from 'axios';
 import type { NextPage } from 'next';
 import nookies from 'nookies';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { MdOutlineChangeCircle, MdOutlineCloudUpload } from 'react-icons/md';
 import CommonButton from '../src/components/common/Button';
-import useTranlate from '../src/hooks/useTranslate';
+import useTranslate from '../src/hooks/useTranslate';
 import { useUnMosaicFaces } from '../src/hooks/useUnMosaicFaces';
 import AuthLayout from '../src/layouts/AuthLayout';
 import resizeImage from '../src/libs/resizeImage';
@@ -28,10 +28,7 @@ const CreatePage: NextPage = () => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const inputImageRef = useRef<HTMLInputElement>(null);
   const [imgTitle, setImgTitle] = useState<string>('hoge');
-  const t = useTranlate();
-  useEffect(() => {
-    console.log(unMosaicFaces);
-  }, [unMosaicFaces]);
+  const t = useTranslate();
 
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -136,16 +133,6 @@ const CreatePage: NextPage = () => {
             )}
             {image && (
               <>
-                {/* <RadioGroup
-                  onChange={(e) => setMagni(Number(e))}
-                  value={magni}
-                  colorScheme="purple"
-                  my={5}
-                >
-                  <Stack direction="column">
-                    <Radio value={1.2}>ほげ</Radio>
-                  </Stack>
-                </RadioGroup> */}
                 <CommonButton
                   leftIcon={<Icon as={MdOutlineChangeCircle} />}
                   onClick={changeImage}

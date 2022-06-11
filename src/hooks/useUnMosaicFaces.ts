@@ -1,25 +1,23 @@
-import axios from 'axios';
-import nookies from 'nookies';
 import useSWR from 'swr';
+import { FaceResponse } from '../libs/api/response/FaceResponse';
+import { fetchUnMosaicFaces } from '../libs/api/unMosaic';
 
 export const useUnMosaicFaces = (): {
-  data: any;
+  data: FaceResponse[] | undefined;
   isLoading: boolean;
   isError: boolean;
 } => {
-  const cookies = nookies.get();
-  const token = cookies.idToken;
   const fetcher = async () => {
-    if (!token) return;
-    const res = await axios.get(`${process.env.API_ENDPOINT}/subject`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res;
+    const res = await fetchUnMosaicFaces();
+    if (res.isLeft()) {
+      throw new Error();
+    }
+    if (res.isRight()) {
+      return res.value;
+    }
   };
   // access tokenごとにキャッシュする
-  const { data, error } = useSWR(`/api/unmosaic/${token}`, fetcher, {
+  const { data, error } = useSWR(`/api/get/unMosaicFaces`, fetcher, {
     errorRetryCount: 0,
   });
 
