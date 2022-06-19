@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { FiSettings } from 'react-icons/fi';
 import { MdLogout, MdMenu, MdOutlineAddPhotoAlternate } from 'react-icons/md';
+import { useModalWindow } from '../hooks/useModalWindow';
 import useTranslate from '../hooks/useTranslate';
 
 export const Header: React.FC = () => {
   const { signOut } = useAuthenticator();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { setIsVisible } = useModalWindow('makePhotoMosaic');
   const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
   const t = useTranslate();
   return (
@@ -34,6 +36,7 @@ export const Header: React.FC = () => {
           variant="ghost"
           size="lg"
           _focus={{ boxShadow: 'none' }}
+          onClick={() => setIsVisible(true)}
         />
         <IconButton
           variant="ghost"

@@ -43,10 +43,11 @@ const getUnMosaicImageById = async (
 const registerUnMosaicFace = async (
   imgTitle: string,
   img: string
-): Promise<ApiResponse<{ message: string }>> => {
+): Promise<ApiResponse<{ message: string; uuid: string }>> => {
   const response = await BackendApiPost<{
     status: 'OK' | 'NG';
     message: string;
+    uuid: string;
   }>({
     path: '/subject',
     params: {
@@ -57,7 +58,7 @@ const registerUnMosaicFace = async (
   if (response.status === 'NG') {
     return new Left({ error: response.message });
   }
-  return new Right({ message: response.message });
+  return new Right({ message: response.message, uuid: response.uuid });
 };
 
 const deleteUnMosaicFace = async (

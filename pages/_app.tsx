@@ -3,6 +3,7 @@ import '@aws-amplify/ui-react/styles.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/m-plus-rounded-1c';
 import type { AppProps } from 'next/app';
+import { MakePhotoMosaicModal } from '../src/components/modal/MakePhotoMosaicModal';
 import DefaultLayout from '../src/layouts/DefaultLayout';
 import '../src/libs/amplify';
 import '../styles/globals.css';
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ChakraProvider theme={theme}>
         <DefaultLayout>
           <Component {...pageProps} />
+          <MakePhotoMosaicModal />
         </DefaultLayout>
       </ChakraProvider>
     </Authenticator.Provider>

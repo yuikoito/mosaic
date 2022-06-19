@@ -1,9 +1,9 @@
 import useSWR from 'swr';
-import { FaceResponse } from '../libs/api/response/FaceResponse';
-import { fetchUnMosaicFaces } from '../libs/api/unMosaic';
+import { fetchUnMosaicFaces, getUnMosaicImageById } from '../libs/api/unMosaic';
+import { ImageSchema } from '../models/ImageSchema';
 
 export const useUnMosaicFaces = (): {
-  data: FaceResponse[] | undefined;
+  data: ImageSchema[] | undefined;
   isLoading: boolean;
   isError: boolean;
 } => {
@@ -13,10 +13,19 @@ export const useUnMosaicFaces = (): {
       throw new Error();
     }
     if (res.isRight()) {
-      return res.value;
+      const images = [];
+      for (let i = 0; i < res.value.length; i++) {
+        const _res = await getUnMosaicImageById(res.value[i].uuid);
+        if (_res.isLeft()) {
+          throw new Error();
+        }
+        if (_res.isRight()) {
+          images.push({ img: _res.value.img, uuid: res.value[i].uuid });
+        }
+      }
+      return images;
     }
   };
-  // access tokenごとにキャッシュする
   const { data, error } = useSWR(`/api/get/unMosaicFaces`, fetcher, {
     errorRetryCount: 0,
   });

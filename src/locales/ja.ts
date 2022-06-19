@@ -27,4 +27,5 @@ export const JaTexts = {
   do: '実行',
   signOut: 'ログアウト',
   accountSettings: 'アカウント設定',
+  next: '次へ',
 };

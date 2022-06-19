@@ -27,4 +27,5 @@ export const EnTexts = {
   do: 'Do',
   signOut: 'Sign Out',
   accountSettings: 'Account Settings',
+  next: 'Next',
 };
