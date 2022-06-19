@@ -12,35 +12,33 @@ import nookies from 'nookies';
 import React, { useRef, useState } from 'react';
 import { MdOutlineChangeCircle, MdOutlineCloudUpload } from 'react-icons/md';
 import CommonButton from '../src/components/common/Button';
+import { InputWithButton } from '../src/components/common/InputWithButton';
+import RegisterModal from '../src/components/common/ResisterModal';
 import useTranslate from '../src/hooks/useTranslate';
 import { useUnMosaicFaces } from '../src/hooks/useUnMosaicFaces';
 import AuthLayout from '../src/layouts/AuthLayout';
 import { addMosaic } from '../src/libs/api/mosaic';
-import resizeImage from '../src/libs/resizeImage';
+import { uploadImageFromLibrary } from '../src/libs/uploadImageFromLibrary';
 
 const CreatePage: NextPage = () => {
   const cookies = nookies.get();
   const token = cookies.idToken;
   const [image, setImage] = useState<string>();
   const { data: unMosaicFaces } = useUnMosaicFaces();
-  const [base64, setBase64] = useState<string>('');
+  const [base64, setBase64] = useState<string>();
   const [changedImage, setChangedImage] = useState<string | null>(null);
   const [isLoad, setIsLoad] = useState<boolean>(false);
   const inputImageRef = useRef<HTMLInputElement>(null);
   const [imgTitle, setImgTitle] = useState<string>('hoge');
   const t = useTranslate();
+  const [isUnMosaicResisterModalOpen, setIsUnMosaicResisterModalOpen] =
+    useState<boolean>(false);
 
-  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const imageFiles = e.target.files;
-    if (!imageFiles) return;
-    const imageFile = imageFiles[0];
-    const imageUrl = URL.createObjectURL(imageFile);
-    setImage(imageUrl);
-    let imgToBase64 = await resizeImage(imageFile, 1000, 1000);
-    if (!imgToBase64) return;
-    imgToBase64 = imgToBase64.replace(/^data:image\/[a-z]+;base64,/, '');
-    setBase64(imgToBase64);
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    uploadImageFromLibrary(e).then((res) => {
+      setImage(res?.imageUrl);
+      setBase64(res?.imgToBase64);
+    });
   };
   const uploadImage = () => {
     setChangedImage(null);
@@ -51,6 +49,7 @@ const CreatePage: NextPage = () => {
   const changeImage = async () => {
     setIsLoad(true);
     // TODO [] にはモザイクをかけない顔を選択する
+    if (!base64) return;
     const response = await addMosaic(imgTitle, base64, []);
     if (response.isLeft()) {
       window.alert(response.value);
@@ -94,7 +93,6 @@ const CreatePage: NextPage = () => {
                   name="picture"
                   type="file"
                   ref={inputImageRef}
-                  multiple
                   accept="image/jpeg, image/png"
                   onChange={(e) => handleFile(e)}
                 />
@@ -125,16 +123,15 @@ const CreatePage: NextPage = () => {
               </Text>
             )}
             {image && (
-              <>
-                <CommonButton
-                  leftIcon={<Icon as={MdOutlineChangeCircle} />}
-                  onClick={changeImage}
-                >
-                  {t.createUnMosaicTargets}
-                </CommonButton>
-              </>
+              <CommonButton
+                leftIcon={<Icon as={MdOutlineChangeCircle} />}
+                onClick={() => setIsUnMosaicResisterModalOpen(true)}
+              >
+                {t.createUnMosaicTargets}
+              </CommonButton>
             )}
           </GridItem>
+          {/* 画像にモザイクをかける */}
           <GridItem>
             <Text fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>
               {t.makePhotoMosaic}
@@ -152,8 +149,21 @@ const CreatePage: NextPage = () => {
                 {t.makePhotoMosaic}
               </CommonButton>
             )}
+            {image && (
+              <InputWithButton
+                label={t.do}
+                placeholder={t.inputImageName}
+                onClick={changeImage}
+              />
+            )}
           </GridItem>
         </Grid>
+        {isUnMosaicResisterModalOpen && (
+          <RegisterModal
+            isOpenModal={isUnMosaicResisterModalOpen}
+            onClose={() => setIsUnMosaicResisterModalOpen(false)}
+          />
+        )}
       </Box>
     </AuthLayout>
   );

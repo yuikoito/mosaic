@@ -23,5 +23,6 @@ export const EnTexts = {
   selectUnMosaicTargets: 'モザイク対象外の人物を選ぶ',
   createUnMosaicTargets: 'モザイク対象外の顔を新規登録',
   makePhotoMosaic: '画像にモザイクをかける',
+  inputImageName: '画像の名前を入力してください 例) 太郎',
   do: 'Do',
 };
