@@ -25,4 +25,6 @@ export const EnTexts = {
   makePhotoMosaic: '画像にモザイクをかける',
   inputImageName: '画像の名前を入力してください 例) 太郎',
   do: 'Do',
+  signOut: 'Sign Out',
+  accountSettings: 'Account Settings',
 };

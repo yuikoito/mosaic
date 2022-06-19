@@ -25,4 +25,6 @@ export const JaTexts = {
   makePhotoMosaic: '画像にモザイクをかける',
   inputImageName: '画像の名前を入力してください 例) 太郎',
   do: '実行',
+  signOut: 'ログアウト',
+  accountSettings: 'アカウント設定',
 };
